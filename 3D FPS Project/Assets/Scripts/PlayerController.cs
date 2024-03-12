@@ -7,7 +7,12 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float mouseSensitivity = 1f;
     public Transform theCamera;
+    public float jumpForce = 10f;
+    public float gravityModifier = 1f;
+    public Transform groundCheckpoint;
+    public LayerMask whatIsGround;
 
+    private bool canPlayerJump;
     private Vector3 moveInput;
     private CharacterController _characterController;
 
@@ -20,6 +25,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float yVeclocity = moveInput.y;
+        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw ("Mouse Y")) * mouseSensitivity;
+
         //moveInput.x = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         //moveInput.z = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
         Vector3 forwardDirection = transform.forward * Input.GetAxis("Vertical");
@@ -28,13 +36,26 @@ public class PlayerController : MonoBehaviour
         moveInput =(forwardDirection + horizontalDirection). normalized;
         moveInput *= moveSpeed;
 
-        _characterController.Move(moveInput);
+        moveInput.y = yVeclocity;
+        moveInput.y += Physics.gravity.y * gravityModifier * Time.deltaTime;
+
+        if(_characterController.isGrounded)
+        {
+            moveInput.y = Physics.gravity.y * gravityModifier * Time.deltaTime;
+        }
+
+        canPlayerJump = Physics.OverlapSphere(groundCheckpoint.position, 0.50f, whatIsGround).Length > 0;
+
+        if(Input.GetKeyDown(KeyCode.Space) && canPlayerJump)
+        {
+            moveInput.y = jumpForce;
+        }
+
+        _characterController.Move(moveInput * Time.deltaTime);
 
         //camcontroles 
 
-        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw ("Mouse Y")) * mouseSensitivity;
-
-        Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
 
         theCamera.rotation = Quaternion.Euler(theCamera.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
     }
