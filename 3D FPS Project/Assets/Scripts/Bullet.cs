@@ -7,18 +7,18 @@ public class Bullet : MonoBehaviour
     public float moveSpeed = 10f;
     public float lifeTime = 5f;
 
-    private Rigidbody rigidbody;
+    private Rigidbody _rigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rigidbody.velocity = transform.forward * moveSpeed;
+        _rigidbody.velocity = transform.forward * moveSpeed;
 
         lifeTime -= Time.deltaTime;
         if(lifeTime <= 0)
