@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Floating target
   - Target
+  - Bullet
+  - Ammo Box
   layers:
   - Default
   - TransparentFX

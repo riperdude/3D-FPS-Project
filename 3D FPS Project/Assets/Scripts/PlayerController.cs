@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool canPlayerJump;
     private Vector3 moveInput;
     private CharacterController _characterController;
+    private Ammo _ammo;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
         theCamera.rotation = Quaternion.Euler(theCamera.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
 
         //shooting
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && _ammo.GetAmmoAmount() > 0)
         {
             RaycastHit hit;
 
@@ -72,13 +73,14 @@ public class PlayerController : MonoBehaviour
                 {
                     firePoint.LookAt(hit.point);
                 }
+            }
                 else
                 {
                     firePoint.LookAt(theCamera.position + (theCamera.forward * 30f));
                 }
 
-                Instantiate(Bullet, transform.position, transform.rotation);
-            }
+                Instantiate(Bullet, firePoint.position, firePoint.rotation);
+                _ammo.RemoveAmmo();
         }
     }
 }
