@@ -29,6 +29,7 @@ public class Timer : MonoBehaviour
             {
                 timeRemaining = 0;
                 _isTimeRunning = false;
+                GameObject.Find("Game Manager").GetComponent<CrossFade>().FadeIn();
             }
         }
     }

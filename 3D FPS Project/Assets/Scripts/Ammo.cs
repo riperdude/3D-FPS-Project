@@ -14,6 +14,7 @@ public class Ammo : MonoBehaviour
     void Start()
     {
         _ammoBoxAmount = Random.Range(3, 7);
+        ammoText.text = "Ammo: " + _ammoAmount.ToString();
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class Ammo : MonoBehaviour
         
     }
 
-    public int SetAmmoAmount()
+    public int GetAmmoAmount()
     {
         return _ammoAmount;
     }
@@ -30,6 +31,12 @@ public class Ammo : MonoBehaviour
     public void RemoveAmmo()
     {
         _ammoAmount -= 1;
+        ammoText.text = "Ammo: " + _ammoAmount.ToString();
+    }
+
+    public void AddAmmo()
+    {
+        _ammoAmount += _ammoBoxAmount;
         ammoText.text = "Ammo: " + _ammoAmount.ToString();
     }
 }

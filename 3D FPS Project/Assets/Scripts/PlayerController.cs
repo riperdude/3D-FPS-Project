@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        _ammo = GetComponent<Ammo>();
     }
 
     // Update is called once per frame
@@ -81,6 +82,15 @@ public class PlayerController : MonoBehaviour
 
                 Instantiate(Bullet, firePoint.position, firePoint.rotation);
                 _ammo.RemoveAmmo();
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Ammo Box"))
+        {
+            _ammo.AddAmmo();
+            other.gameObject.SetActive(false);
         }
     }
 }
