@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Menus : MonoBehaviour
+public class Menus2 : MonoBehaviour
 {
-    public string levelOne;
+    public string levelTwo;
 
     void Start()
     {
@@ -14,9 +14,9 @@ public class Menus : MonoBehaviour
 
     public void OnPlayButtonPressed()
     {
-        if(levelOne == "Level One")
+        if(levelTwo == "Level Two")
         {
-            SceneManager.LoadScene(levelOne);
+            SceneManager.LoadScene(levelTwo);
         }
         else
         {

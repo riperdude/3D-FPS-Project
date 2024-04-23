@@ -452,10 +452,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 972633227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3c9f50708f1e4297a1bc294a9c410df, type: 3}
+  m_Script: {fileID: 11500000, guid: 6512b6feca2de4982b8f9c6c346232fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTwo: Level Two
+  levelOne: Title Scene
 --- !u!1 &1160380803
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Won!
+  m_text: The End!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -674,7 +674,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 972633229}
-        m_TargetAssemblyTypeName: Menus2, Assembly-CSharp
+        m_TargetAssemblyTypeName: Menus, Assembly-CSharp
         m_MethodName: OnPlayButtonPressed
         m_Mode: 1
         m_Arguments:
